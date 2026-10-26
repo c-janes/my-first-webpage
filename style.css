@@ -1,0 +1,52 @@
+/* --- Type Selectors (Applied globally) --- */
+body {
+  background-color: #121214;
+  color: #e1e1e6;
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #8257e5;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- ID Selectors --- */
+#main-header {
+  background-color: #202024;
+  padding: 20px 40px;
+  border-bottom: 3px solid #8257e5; /* Box Model */
+  margin-bottom: 20px;              /* Box Model */
+}
+
+#intro-section {
+  border-left: 5px solid #00b37e;   /* Box Model accent */
+}
+
+/* --- Class Selectors --- */
+.card {
+  background-color: #202024;
+  padding: 24px;                    /* Box Model */
+  margin: 20px auto;                /* Box Model */
+  max-width: 600px;
+  border: 1px solid #29292e;        /* Box Model */
+  border-radius: 8px;
+}
+
+.content-wrapper {
+  padding: 0 20px;
+}
+
+.site-footer {
+  background-color: #202024;
+  text-align: center;
+  padding: 20px;                    /* Box Model */
+  margin-top: 40px;                 /* Box Model */
+  border-top: 1px solid #29292e;    /* Box Model */
+}
