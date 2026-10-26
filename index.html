@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Me - Personal Web Page</title>
+  <!-- Linked CSS File Requirement -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- 1. HEADER ELEMENT -->
-  <header>
+  <!-- 1. HEADER ELEMENT (ID Selector used here) -->
+  <header id="main-header">
     <h1>Charlie's Personal Corner</h1>
     <!-- 2. NAV ELEMENT -->
     <nav>
@@ -23,8 +25,8 @@
   <!-- 3. MAIN ELEMENT -->
   <main>
 
-    <!-- 4. SECTION ELEMENT -->
-    <section id="about">
+    <!-- 4. SECTION ELEMENT (ID and Class Selectors used here) -->
+    <section id="intro-section" class="card">
       <h2>About Me</h2>
       <p>Hello, I am a college student studying Information Technology. I am passionate about understanding how systems work under the hood, building useful software tools, and working with modern technology.</p>
 
@@ -32,7 +34,8 @@
       <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop" alt="A laptop screen displaying lines of clean code in a terminal window">
     </section>
 
-    <section id="interests">
+    <!-- Class Selector used here -->
+    <section class="card">
       <h2>Interests & Projects</h2>
       <p>Here are a few areas of tech and hobbies that I focus on regularly:</p>
 
@@ -51,7 +54,8 @@
       </article>
     </section>
 
-    <section id="goals">
+    <!-- Class Selector used here -->
+    <section class="card">
       <h2>Current Semester Goals</h2>
       <p>My key objectives for this semester include:</p>
 
@@ -65,8 +69,8 @@
 
   </main>
 
-  <!-- 6. FOOTER ELEMENT -->
-  <footer>
+  <!-- 6. FOOTER ELEMENT (Class Selector used here) -->
+  <footer class="site-footer">
     <p>&copy; 2026 Charlie Janes. Built for Web Development Class.</p>
   </footer>
 
