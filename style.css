@@ -1,4 +1,8 @@
-/* --- Type Selectors (Applied globally) --- */
+/* --- Global Resets to Prevent Overflow & Horizontal Scrolling --- */
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #121214;
   color: #e1e1e6;
@@ -6,6 +10,7 @@ body {
   line-height: 1.6;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 a {
@@ -17,36 +22,93 @@ a:hover {
   text-decoration: underline;
 }
 
-/* --- ID Selectors --- */
+/* --- Header Layout --- */
 #main-header {
   background-color: #202024;
-  padding: 20px 40px;
-  border-bottom: 3px solid #8257e5; /* Box Model */
-  margin-bottom: 20px;              /* Box Model */
+  padding: 20px;
+  border-bottom: 3px solid #8257e5;
+  margin-bottom: 20px;
+}
+
+#main-header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* --- Main Section: Multi-Column CSS Grid Layout --- */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile (320px): Single stack column */
+  gap: 20px;
+}
+
+.card {
+  background-color: #202024;
+  padding: 20px;
+  border: 1px solid #29292e;
+  border-radius: 8px;
+  width: 100%;
 }
 
 #intro-section {
-  border-left: 5px solid #00b37e;   /* Box Model accent */
+  border-left: 5px solid #00b37e;
 }
 
-/* --- Class Selectors --- */
-.card {
-  background-color: #202024;
-  padding: 24px;                    /* Box Model */
-  margin: 20px auto;                /* Box Model */
-  max-width: 600px;
-  border: 1px solid #29292e;        /* Box Model */
-  border-radius: 8px;
+/* Responsive Image safety */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-top: 10px;
 }
 
-.content-wrapper {
-  padding: 0 20px;
-}
-
+/* --- Footer --- */
 .site-footer {
   background-color: #202024;
   text-align: center;
-  padding: 20px;                    /* Box Model */
-  margin-top: 40px;                 /* Box Model */
-  border-top: 1px solid #29292e;    /* Box Model */
+  padding: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #29292e;
+}
+
+
+/* ==========================================
+   MEDIA QUERIES (Breakpoints)
+   ========================================== */
+
+/* Tablet Viewport (768px and up) */
+@media (min-width: 768px) {
+  #main-header {
+    padding: 30px 40px;
+  }
+
+  main {
+    padding: 0 25px;
+    grid-template-columns: repeat(2, 1fr); /* Switches to a 2-column layout */
+  }
+
+  /* Make the intro card span across both columns on tablet */
+  #intro-section {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Desktop Viewport (1200px and up) */
+@media (min-width: 1200px) {
+  main {
+    grid-template-columns: repeat(3, 1fr); /* Switches to a 3-column layout */
+    padding: 0;
+  }
+
+  /* Reset intro section to normal single-column width for desktop grid */
+  #intro-section {
+    grid-column: span 1;
+  }
 }
