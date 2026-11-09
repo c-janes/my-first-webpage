@@ -1,12 +1,14 @@
-/* --- Global Resets to Prevent Overflow & Horizontal Scrolling --- */
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
 * {
   box-sizing: border-box;
 }
 
 body {
   background-color: #121214;
-  color: #e1e1e6;
-  font-family: system-ui, -apple-system, sans-serif;
+  color: #e1e1e6; /* High contrast text */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
@@ -22,7 +24,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* --- Header Layout --- */
+/* --- Header & Nav --- */
 #main-header {
   background-color: #202024;
   padding: 20px;
@@ -35,17 +37,22 @@ a:hover {
   padding: 0;
   margin: 10px 0 0 0;
   display: flex;
-  gap: 15px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
-/* --- Main Section: Multi-Column CSS Grid Layout --- */
+#main-header nav a {
+  font-weight: 500;
+  color: #cdd6f4;
+}
+
+/* --- Multi-Column Grid Layout --- */
 main {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
   display: grid;
-  grid-template-columns: 1fr; /* Mobile (320px): Single stack column */
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
@@ -57,11 +64,15 @@ main {
   width: 100%;
 }
 
+/* High contrast secondary text for accessibility */
+.card p {
+  color: #c4c4cc; 
+}
+
 #intro-section {
   border-left: 5px solid #00b37e;
 }
 
-/* Responsive Image safety */
 img {
   max-width: 100%;
   height: auto;
@@ -69,45 +80,32 @@ img {
   margin-top: 10px;
 }
 
-/* --- Footer --- */
 .site-footer {
   background-color: #202024;
   text-align: center;
   padding: 20px;
   margin-top: 40px;
   border-top: 1px solid #29292e;
+  color: #94949e;
 }
 
-
-/* ==========================================
-   MEDIA QUERIES (Breakpoints)
-   ========================================== */
-
-/* Tablet Viewport (768px and up) */
+/* --- Responsive Breakpoints --- */
 @media (min-width: 768px) {
   #main-header {
     padding: 30px 40px;
   }
-
   main {
-    padding: 0 25px;
-    grid-template-columns: repeat(2, 1fr); /* Switches to a 2-column layout */
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  /* Make the intro card span across both columns on tablet */
   #intro-section {
     grid-column: 1 / -1;
   }
 }
 
-/* Desktop Viewport (1200px and up) */
 @media (min-width: 1200px) {
   main {
-    grid-template-columns: repeat(3, 1fr); /* Switches to a 3-column layout */
-    padding: 0;
+    grid-template-columns: repeat(3, 1fr);
   }
-
-  /* Reset intro section to normal single-column width for desktop grid */
   #intro-section {
     grid-column: span 1;
   }
