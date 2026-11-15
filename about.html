@@ -9,12 +9,12 @@
 <body>
 
   <header id="main-header">
-    <h1>Charlie's Portfolio</h1>
-    <nav>
+    <h1>Charlie's Personal Corner</h1>
+    <nav aria-label="Main Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="about.html">About & Contact</a></li>
+        <li><a href="about.html" aria-current="page">About & Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -22,18 +22,125 @@
   <main>
     <section class="card">
       <h2>About Me</h2>
-      <p>I am an IT student focusing on systems, software development, and technical problem-solving.</p>
+      <p>I am an Information Technology student focusing on Linux systems, networking, and software development. I enjoy building practical tools and learning how hardware and software interact.</p>
+      <p>Feel free to reach out using the contact form if you want to connect about coursework, projects, or tech.</p>
     </section>
 
-    <section class="card">
-      <h2>Contact</h2>
-      <p>If you would like to get in touch regarding tech projects or coursework, feel free to reach out via GitHub.</p>
+    <section class="card full-width">
+      <h2>Contact Me</h2>
+      <form id="contact-form" class="contact-form" novalidate>
+        <fieldset>
+          <legend>Your Contact Information</legend>
+
+          <div class="form-group">
+            <label for="full-name">Full Name <span class="required-tag">(Required)</span></label>
+            <input type="text" id="full-name" name="full-name" required aria-required="true" aria-describedby="name-error">
+            <p id="name-error" class="error-message" role="alert"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="email-address">Email Address <span class="required-tag">(Required)</span></label>
+            <input type="email" id="email-address" name="email-address" required aria-required="true" aria-describedby="email-error">
+            <p id="email-error" class="error-message" role="alert"></p>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Reason for Reaching Out</legend>
+          <div class="radio-group">
+            <label class="radio-option" for="topic-project">
+              <input type="radio" id="topic-project" name="topic" value="project" checked>
+              Project Collaboration
+            </label>
+            <label class="radio-option" for="topic-class">
+              <input type="radio" id="topic-class" name="topic" value="class">
+              Web Development Class
+            </label>
+            <label class="radio-option" for="topic-general">
+              <input type="radio" id="topic-general" name="topic" value="general">
+              General Question
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Message Details</legend>
+          <div class="form-group">
+            <label for="user-message">Message <span class="required-tag">(Required)</span></label>
+            <textarea id="user-message" name="user-message" rows="4" required aria-required="true" aria-describedby="message-error"></textarea>
+            <p id="message-error" class="error-message" role="alert"></p>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn-primary">Send Message</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </main>
 
   <footer class="site-footer">
     <p>&copy; 2026 Charlie Janes. Built for Web Development Class.</p>
   </footer>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('full-name');
+    const emailInput = document.getElementById('email-address');
+    const messageInput = document.getElementById('user-message');
+
+    const nameError = document.getElementById('name-error');
+    const emailError = document.getElementById('email-error');
+    const messageError = document.getElementById('message-error');
+    const formStatus = document.getElementById('form-status');
+
+    function setFieldError(input, errorElement, message) {
+      if (message) {
+        input.setAttribute('aria-invalid', 'true');
+        errorElement.textContent = message;
+      } else {
+        input.removeAttribute('aria-invalid');
+        errorElement.textContent = '';
+      }
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      let isValid = true;
+      formStatus.textContent = '';
+
+      if (nameInput.value.trim() === '') {
+        setFieldError(nameInput, nameError, 'Error: Please enter your full name.');
+        isValid = false;
+      } else {
+        setFieldError(nameInput, nameError, '');
+      }
+
+      const emailValue = emailInput.value.trim();
+      if (emailValue === '' || !emailValue.includes('@') || !emailValue.includes('.')) {
+        setFieldError(emailInput, emailError, 'Error: Please enter a valid email address.');
+        isValid = false;
+      } else {
+        setFieldError(emailInput, emailError, '');
+      }
+
+      if (messageInput.value.trim() === '') {
+        setFieldError(messageInput, messageError, 'Error: Please enter a message before submitting.');
+        isValid = false;
+      } else {
+        setFieldError(messageInput, messageError, '');
+      }
+
+      if (isValid) {
+        formStatus.textContent = 'Thank you! Your message has been validated and sent.';
+        form.reset();
+      } else {
+        const firstInvalid = form.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) {
+          firstInvalid.focus();
+        }
+      }
+    });
+  </script>
 
 </body>
 </html>
